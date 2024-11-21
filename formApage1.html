@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scenario 1 - Chemistry Professor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Scenario 1: Chemistry Professor - Select Your Products</h1>
+        <p class="scenario-description">
+            You are a chemistry professor at UC Berkeley with a $100 budget to buy products in the following categories:
+            Furniture, Tech, and Classroom Supplies.
+        </p>
+
+        <form id="scenario1-form">
+            <!-- Furniture Category -->
+            <div class="category">
+                <h2>Furniture</h2>
+                <div class="products">
+                    <div class="product">
+                        <input type="radio" id="furniture1" name="Selection1F" value="GoodSeat 18 Chair" data-price="700" required>
+                        <label for="furniture1">
+                            <img src="images/chair.jpg" alt="GoodSeat 18 Chair">
+                            <div class="product-info">
+                                <strong>GoodSeat 18" Chair</strong><br>
+                                <span class="label">Price:</span> $700
+                            </div>
+                        </label>
+                    </div>
+                    <div class="product">
+                        <input type="radio" id="furniture2" name="Selection1F" value="SchoolEd 18 Chair" data-price="840" required>
+                        <label for="furniture2">
+                            <img src="images/chair.jpg" alt="SchoolEd 18 Chair">
+                            <div class="product-info">
+                                <strong>SchoolEd 18" Chair</strong><br>
+                                <span class="label">Price:</span> $840
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tech Category -->
+            <div class="category">
+                <h2>Tech</h2>
+                <div class="products">
+                    <div class="product">
+                        <input type="radio" id="tech1" name="Selection1T" value="ABC Laptop" data-price="700" required>
+                        <label for="tech1">
+                            <img src="images/comp.png" alt="ABC Laptop">
+                            <div class="product-info">
+                                <strong>ABC Laptop</strong><br>
+                                <span class="label">Price:</span> $700
+                            </div>
+                        </label>
+                    </div>
+                    <div class="product">
+                        <input type="radio" id="tech2" name="Selection1T" value="Bob’s Great Laptop" data-price="840" required>
+                        <label for="tech2">
+                            <img src="images/comp.png" alt="Bob’s Great Laptop">
+                            <div class="product-info">
+                                <strong>Bob’s Great Laptop</strong><br>
+                                <span class="label">Price:</span> $840
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Classroom Supplies Category -->
+            <div class="category">
+                <h2>Classroom Supplies</h2>
+                <div class="products">
+                    <div class="product">
+                        <input type="radio" id="classroom1" name="Selection1C" value="WriteEase Marker" data-price="1.50" required>
+                        <label for="classroom1">
+                            <img src="images/pen.png" alt="WriteEase Marker">
+                            <div class="product-info">
+                                <strong>WriteEase Marker</strong><br>
+                                <span class="label">Price:</span> $1.50
+                            </div>
+                        </label>
+                    </div>
+                    <div class="product">
+                        <input type="radio" id="classroom2" name="Selection1C" value="BoardMate Marker" data-price="2.50" required>
+                        <label for="classroom2">
+                            <img src="images/pen.png" alt="BoardMate Marker">
+                            <div class="product-info">
+                                <strong>BoardMate Marker</strong><br>
+                                <span class="label">Price:</span> $2.50
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Reasoning: Why did you pick this product?</h3>
+            <textarea name="Reason1" rows="4" cols="50" placeholder="Explain your choice..." required></textarea><br>
+
+            <div id="total-price">
+                <h3>Total Price: $<span id="total">0</span></h3>
+            </div>
+
+
+            <button type="submit">Next</button>
+        </form>
+    </div>
+
+    <script>
+        // Update total price when a selection is made
+        function updateTotal() {
+            let total = 0;
+            const selectedItems = document.querySelectorAll('input[type="radio"]:checked');
+            selectedItems.forEach(item => {
+                total += parseFloat(item.getAttribute('data-price'));
+            });
+            document.getElementById('total').innerText = total.toFixed(2);
+        }
+
+        // Add event listeners to all radio buttons
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', updateTotal);
+        });
+
+        // Handle form submission
+        document.getElementById('scenario1-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from submitting immediately
+
+            // Collect data
+            const furniture1 = document.querySelector('input[name="Selection1F"]:checked').value;
+            const tech1 = document.querySelector('input[name="Selection1T"]:checked').value;
+            const classroom1 = document.querySelector('input[name="Selection1C"]:checked').value;
+            const reasoning1 = document.querySelector('textarea[name="Reason1"]').value;
+
+            // Submit data to Google Sheets
+            const formData = new FormData();
+            formData.append('Selection1F', furniture1);
+            formData.append('Selection1T', tech1);
+            formData.append('Selection1C', classroom1);
+            formData.append('Reason1', reasoning1);
+
+            fetch('https://script.google.com/macros/s/AKfycbxYBJB_PeBA0441mR_lgeQb1f3KBGO832FFhYKiV2w_WXsO_LOynOUpc3aHHYrfytF6/exec', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Redirect to the next page
+                window.location.href = "formApage2.html";
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error submitting the form.');
+            });
+        });
+    </script>
+</body>
+<body>
+    <div class="container">
+        <h1>Scenario 2: Head of IT Department - Select Your Products</h1>
+        <p class="scenario-description">
+            You are the head of the IT department at a non-profit organization with a $200 budget to buy office equipment. 
+            The categories for purchase are: Furniture, Tech, and Office Supplies.
+        </p>
+
+        <form id="scenario2-form" >
+            <!-- Furniture Category -->
+            <div class="category">
+                <h2>Furniture</h2>
+                <div class="products">
+                    <div class="product">
+                        <input type="radio" id="furniture1" name="Selection2F" value="GoodSeat 18\" Chair" data-price="700" required>
+                        <label for="furniture1">
+                            <img src="images/chair.jpg" alt="GoodSeat 18 Chair">
+                            <div class="product-info">
+                                <strong>GoodSeat 18" Chair</strong><br>
+                                <span class="label">Price:</span> $700<br>
+                                <span class="label">Brand:</span> Good Seat<br>
+                                <span class="label">Color:</span> Black<br>
+                                <span class="label">Size:</span> Seat, Height - 18"<br>
+                                <span class="label">Special Feature:</span> Stackable, durable, comfortable<br>
+                                <span class="label">Materials:</span> Metal, Foam
+                            </div>
+                        </label>
+                    </div>
+                    <div class="product">
+                        <input type="radio" id="furniture2" name="Selection2F" value="EduSupplies 18\" Chair" data-price="840" required>
+                        <label for="furniture2">
+                            <img src="images/chair.jpg" alt="EduSupplies 18 Chair">
+                            <div class="product-info">
+                                <strong>EduSupplies 18" Chair</strong><br>
+                                <span class="label">Price:</span> $840<br>
+                                <span class="label">Brand:</span> EduSupplies<br>
+                                <span class="label">Color:</span> Black<br>
+                                <span class="label">Size:</span> Seat, Height - 18"<br>
+                                <span class="label">Special Feature:</span> Stacks up to 5 high for convenient storage<br>
+                                <span class="label">Materials:</span> Sustainably sourced wood
+                            </div>
+                        </label>
+                        <div class="sustainability">
+                            <span class="sustainability-text">🌱 Seller is under a sustainability pledge for reducing carbon footprint</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tech Category -->
+            <div class="category">
+                <h2>Tech</h2>
+                <div class="products">
+                    <div class="product">
+                        <input type="radio" id="tech1" name="Selection2T" value="ABC 15.6\" Portable Laptop" data-price="700" required>
+                        <label for="tech1">
+                            <img src="images/comp.png" alt="ABC 15.6 Laptop">
+                            <div class="product-info">
+                                <strong>ABC 15.6" Portable Laptop</strong><br>
+                                <span class="label">Price:</span> $700<br>
+                                <span class="label">Brand:</span> ABC<br>
+                                <span class="label">Color:</span> Black<br>
+                                <span class="label">Size:</span> Screen Size - 15.6"<br>
+                                <span class="label">Special Feature:</span> High-end laptop with fastest up-to-date hardware, lightweight<br>
+                                <span class="label">Materials:</span> Polycarbonate, ABS (Acrylonitrile Butadiene Styrene)
+                            </div>
+                        </label>
+                    </div>
+                    <div class="product">
+                        <input type="radio" id="tech2" name="Selection2T" value="John’s 15.6\" School Laptop" data-price="950" required>
+                        <label for="tech2">
+                            <img src="images/comp.png" alt="John’s 15.6 Laptop">
+                            <div class="product-info">
+                                <strong>John’s 15.6" School Laptop</strong><br>
+                                <span class="label">Price:</span> $950<br>
+                                <span class="label">Brand:</span> John’s<br>
+                                <span class="label">Color:</span> Black<br>
+                                <span class="label">Size:</span> Screen Size - 15.6"<br>
+                                <span class="label">Special Feature:</span> High-end laptop with fastest up-to-date hardware + 1 year free JohnCare<br>
+                                <span class="label">Materials:</span> Recycled Plastic and rubber
+                            </div>
+                        </label>
+                        <div class="sustainability">
+                            <span class="sustainability-text">🌱 Seller is under a sustainability pledge for reducing carbon footprint</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Classroom Supplies Category -->
+            <div class="category">
+                <h2>Classroom Supplies</h2>
+                <div class="products">
+                    <div class="product">
+                        <input type="radio" id="classroom1" name="Selection2C" value="WriteEase Whiteboard Marker" data-price="1.50" required>
+                        <label for="classroom1">
+                            <img src="images/pen.png" alt="WriteEase Whiteboard Marker">
+                            <div class="product-info">
+                                <strong>WriteEase Whiteboard Marker</strong><br>
+                                <span class="label">Price:</span> $1.50<br>
+                                <span class="label">Brand:</span> WriteEase<br>
+                                <span class="label">Color:</span> Blue<br>
+                                <span class="label">Size:</span> Bullet Tip - 2.5mm<br>
+                                <span class="label">Special Feature:</span> Quick-drying, oil-based, low-odor ink<br>
+                                <span class="label">Materials:</span> Polypropylene, Synthetic Felt Tip, Polyethylene Cap
+                            </div>
+                        </label>
+                    </div>
+                    <div class="product">
+                        <input type="radio" id="classroom2" name="Selection2C" value="SharpWrite Whiteboard Marker" data-price="2.75" required>
+                        <label for="classroom2">
+                            <img src="images/pen.png" alt="SharpWrite Whiteboard Marker">
+                            <div class="product-info">
+                                <strong>SharpWrite Whiteboard Marker</strong><br>
+                                <span class="label">Price:</span> $2.75<br>
+                                <span class="label">Brand:</span> SharpWrite<br>
+                                <span class="label">Color:</span> Blue<br>
+                                <span class="label">Size:</span> Bullet Tip - 2.5mm<br>
+                                <span class="label">Special Feature:</span> Non-toxic, solvent-based, low-odor ink formula<br>
+                                <span class="label">Materials:</span> 70% Recycled Polypropylene, Recycled ABS (Acrylonitrile Butadiene Styrene) Felt Tip and Cap
+                            </div>
+                        </label>
+                        <div class="sustainability">
+                            <span class="sustainability-text">🌱 Seller is under a sustainability pledge for reducing carbon footprint</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Reasoning: Why did you pick this product?</h3>
+            <textarea name="Reason2" rows="4" cols="50" placeholder="Explain your choice..." required></textarea><br>
+
+            <div id="total-price">
+                <h3>Total Price: $<span id="total">0</span></h3>
+            </div>
+
+           <button type="submit">Next</button>
+        </form>
+    </div>
+    <style>
+        /* Style for the modal */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
+            padding-top: 60px;
+        }
+
+        /* Modal content */
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Close button */
+        .close {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-family: Arial, sans-serif;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Modal text style */
+        .modal-text {
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Scenario 3: High School Teacher - Select Your Products</h1>
+        <p class="scenario-description">
+            You are a high school teacher tasked with preparing supplies for an upcoming science project. 
+            You have a $50 budget, and the categories to purchase from are: Furniture, Tech, and Classroom Supplies.
+        </p>
+
+        <form id="scenario3-form">
+
+            <!-- Furniture Category -->
+            <div class="category">
+                <h2>Furniture</h2>
+                <div class="products">
+                    <div class="product">
+                        <input type="radio" id="furniture1" name="Selection3F" value="GoodSeat 18\" Chair" data-price="700" required>
+                        <label for="furniture1">
+                            <img src="images/chair.jpg" alt="GoodSeat 18 Chair">
+                            <div class="product-info">
+                                <strong>GoodSeat 18" Chair</strong><br>
+                                <span class="label">Price:</span> $700<br>
+                                <span class="label">Brand:</span> Good Seat<br>
+                                <span class="label">Color:</span> Black<br>
+                                <span class="label">Size:</span> Seat, Height - 18"<br>
+                                <span class="label">Special Feature:</span> Stackable, durable, comfortable<br>
+                                <span class="label">Materials:</span> Metal, Foam
+                            </div>
+                        </label>
+                    </div>
+                    <div class="product">
+                        <input type="radio" id="furniture2" name="Selection3F" value="EcesFurniture 18\" Chair" data-price="840" required>
+                        <label for="furniture2">
+                            <img src="images/chair.jpg" alt="EcesFurniture 18 Chair">
+                            <div class="product-info">
+                                <strong>EcesFurniture 18" Chair</strong><br>
+                                <span class="label">Price:</span> $840<br>
+                                <span class="label">Brand:</span> EcesFurniture<br>
+                                <span class="label">Color:</span> Black<br>
+                                <span class="label">Size:</span> Seat, Height - 18"<br>
+                                <span class="label">Special Feature:</span> Suitable for outdoor use, deep seat bucket and wide back<br>
+                                <span class="label">Materials:</span> 75% waste polypropylene and 15% reclaimed wood
+                            </div>
+                        </label>
+                        <div class="sustainability">
+                            <span class="sustainability-text">🌱 Seller is under a sustainability pledge for reducing carbon footprint</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tech Category -->
+            <div class="category">
+                <h2>Tech</h2>
+                <div class="products">
+                    <div class="product">
+                        <input type="radio" id="tech1" name="Selection3T" value="ABC 15.6\" Portable Laptop" data-price="700" required>
+                        <label for="tech1">
+                            <img src="images/comp.png" alt="ABC 15.6 Laptop">
+                            <div class="product-info">
+                                <strong>ABC 15.6" Portable Laptop</strong><br>
+                                <span class="label">Price:</span> $700<br>
+                                <span class="label">Brand:</span> ABC<br>
+                                <span class="label">Color:</span> Black<br>
+                                <span class="label">Size:</span> Screen Size - 15.6"<br>
+                                <span class="label">Special Feature:</span> High-end laptop with fastest up-to-date hardware, lightweight<br>
+                                <span class="label">Materials:</span> Polycarbonate, ABS (Acrylonitrile Butadiene Styrene)
+                            </div>
+                        </label>
+                    </div>
+                    <div class="product">
+                        <input type="radio" id="tech2" name="Selection3T" value="5-Star’s 15.6\" Portable Laptop" data-price="1200" required>
+                        <label for="tech2">
+                            <img src="images/comp.png" alt="5-Star’s 15.6 Laptop">
+                            <div class="product-info">
+                                <strong>5-Star’s 15.6" Portable Laptop</strong><br>
+                                <span class="label">Price:</span> $1200<br>
+                                <span class="label">Brand:</span> 5-Star’s<br>
+                                <span class="label">Color:</span> Black<br>
+                                <span class="label">Size:</span> Screen Size - 15.6"<br>
+                                <span class="label">Special Feature:</span> High-end laptop with fastest up-to-date hardware + 1 year of Microsoft Office Suite<br>
+                                <span class="label">Materials:</span> Non-synthetic bioplastics, recycled aluminum
+                            </div>
+                        </label>
+                        <div class="sustainability">
+                            <span class="sustainability-text">🌱 Seller is under a sustainability pledge for reducing carbon footprint</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Classroom Supplies Category -->
+            <div class="category">
+                <h2>Classroom Supplies</h2>
+                <div class="products">
+                    <div class="product">
+                        <input type="radio" id="classroom1" name="Selection3C" value="WriteEase Whiteboard Marker" data-price="1.50" required>
+                        <label for="classroom1">
+                            <img src="images/pen.png" alt="WriteEase Whiteboard Marker">
+                            <div class="product-info">
+                                <strong>WriteEase Whiteboard Marker</strong><br>
+                                <span class="label">Price:</span> $1.50<br>
+                                <span class="label">Brand:</span> WriteEase<br>
+                                <span class="label">Color:</span> Blue<br>
+                                <span class="label">Size:</span> Bullet Tip - 2.5mm<br>
+                                <span class="label">Special Feature:</span> Quick-drying, oil-based, low-odor ink<br>
+                                <span class="label">Materials:</span> Polypropylene, Synthetic Felt Tip, Polyethylene Cap
+                            </div>
+                        </label>
+                    </div>
+                    <div class="product">
+                        <input type="radio" id="classroom2" name="Selection3C" value="MarkPro Whiteboard Marker" data-price="3.00" required>
+                        <label for="classroom2">
+                            <img src="images/pen.png" alt="MarkPro Whiteboard Marker">
+                            <div class="product-info">
+                                <strong>MarkPro Whiteboard Marker</strong><br>
+                                <span class="label">Price:</span> $3.00<br>
+                                <span class="label">Brand:</span> MarkPro<br>
+                                <span class="label">Color:</span> Blue<br>
+                                <span class="label">Size:</span> Bullet Tip - 2.5mm<br>
+                                <span class="label">Special Feature:</span> Non-toxic, water-based, low-odor ink formula, refillable barrel<br>
+                                <span class="label">Materials:</span> 100% Recycled Polypropylene, Recycled PET Felt Tip, Recycled PET Cap
+                            </div>
+                        </label>
+                        <div class="sustainability">
+                            <span class="sustainability-text">🌱 Seller is under a sustainability pledge for reducing carbon footprint</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Reasoning: Why did you pick this product?</h3>
+            <textarea name="Reason3" rows="4" cols="50" placeholder="Explain your choice..." required></textarea><br>
+
+            <div id="total-price">
+                <h3>Total Price: $<span id="total">0</span></h3>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+</html>

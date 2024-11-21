@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scenario 2 - Head of IT Department</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Scenario 2: Head of IT Department - Select Your Products</h1>
+        <p class="scenario-description">
+            You are the head of the IT department at a non-profit organization with a $200 budget to buy office equipment. 
+            The categories for purchase are: Furniture, Tech, and Office Supplies.
+        </p>
+
+        <form id="scenario2-form" >
+            <!-- Furniture Category -->
+            <div class="category">
+                <h2>Furniture</h2>
+                <div class="products">
+                    <div class="product">
+                        <input type="radio" id="furniture1" name="Selection2F" value="GoodSeat 18\" Chair" data-price="700" required>
+                        <label for="furniture1">
+                            <img src="images/chair.jpg" alt="GoodSeat 18 Chair">
+                            <div class="product-info">
+                                <strong>GoodSeat 18" Chair</strong><br>
+                                <span class="label">Price:</span> $700<br>
+                                <span class="label">Brand:</span> Good Seat<br>
+                                <span class="label">Color:</span> Black<br>
+                                <span class="label">Size:</span> Seat, Height - 18"<br>
+                                <span class="label">Special Feature:</span> Stackable, durable, comfortable<br>
+                                <span class="label">Materials:</span> Metal, Foam
+                            </div>
+                        </label>
+                    </div>
+                    <div class="product">
+                        <input type="radio" id="furniture2" name="Selection2F" value="EduSupplies 18\" Chair" data-price="840" required>
+                        <label for="furniture2">
+                            <img src="images/chair.jpg" alt="EduSupplies 18 Chair">
+                            <div class="product-info">
+                                <strong>EduSupplies 18" Chair</strong><br>
+                                <span class="label">Price:</span> $840<br>
+                                <span class="label">Brand:</span> EduSupplies<br>
+                                <span class="label">Color:</span> Black<br>
+                                <span class="label">Size:</span> Seat, Height - 18"<br>
+                                <span class="label">Special Feature:</span> Stacks up to 5 high for convenient storage<br>
+                                <span class="label">Materials:</span> Sustainably sourced wood
+                            </div>
+                        </label>
+                        <div class="sustainability">
+                            <span class="sustainability-text">🌱 Seller is under a sustainability pledge for reducing carbon footprint</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tech Category -->
+            <div class="category">
+                <h2>Tech</h2>
+                <div class="products">
+                    <div class="product">
+                        <input type="radio" id="tech1" name="Selection2T" value="ABC 15.6\" Portable Laptop" data-price="700" required>
+                        <label for="tech1">
+                            <img src="images/comp.png" alt="ABC 15.6 Laptop">
+                            <div class="product-info">
+                                <strong>ABC 15.6" Portable Laptop</strong><br>
+                                <span class="label">Price:</span> $700<br>
+                                <span class="label">Brand:</span> ABC<br>
+                                <span class="label">Color:</span> Black<br>
+                                <span class="label">Size:</span> Screen Size - 15.6"<br>
+                                <span class="label">Special Feature:</span> High-end laptop with fastest up-to-date hardware, lightweight<br>
+                                <span class="label">Materials:</span> Polycarbonate, ABS (Acrylonitrile Butadiene Styrene)
+                            </div>
+                        </label>
+                    </div>
+                    <div class="product">
+                        <input type="radio" id="tech2" name="Selection2T" value="John’s 15.6\" School Laptop" data-price="950" required>
+                        <label for="tech2">
+                            <img src="images/comp.png" alt="John’s 15.6 Laptop">
+                            <div class="product-info">
+                                <strong>John’s 15.6" School Laptop</strong><br>
+                                <span class="label">Price:</span> $950<br>
+                                <span class="label">Brand:</span> John’s<br>
+                                <span class="label">Color:</span> Black<br>
+                                <span class="label">Size:</span> Screen Size - 15.6"<br>
+                                <span class="label">Special Feature:</span> High-end laptop with fastest up-to-date hardware + 1 year free JohnCare<br>
+                                <span class="label">Materials:</span> Recycled Plastic and rubber
+                            </div>
+                        </label>
+                        <div class="sustainability">
+                            <span class="sustainability-text">🌱 Seller is under a sustainability pledge for reducing carbon footprint</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Classroom Supplies Category -->
+            <div class="category">
+                <h2>Classroom Supplies</h2>
+                <div class="products">
+                    <div class="product">
+                        <input type="radio" id="classroom1" name="Selection2C" value="WriteEase Whiteboard Marker" data-price="1.50" required>
+                        <label for="classroom1">
+                            <img src="images/pen.png" alt="WriteEase Whiteboard Marker">
+                            <div class="product-info">
+                                <strong>WriteEase Whiteboard Marker</strong><br>
+                                <span class="label">Price:</span> $1.50<br>
+                                <span class="label">Brand:</span> WriteEase<br>
+                                <span class="label">Color:</span> Blue<br>
+                                <span class="label">Size:</span> Bullet Tip - 2.5mm<br>
+                                <span class="label">Special Feature:</span> Quick-drying, oil-based, low-odor ink<br>
+                                <span class="label">Materials:</span> Polypropylene, Synthetic Felt Tip, Polyethylene Cap
+                            </div>
+                        </label>
+                    </div>
+                    <div class="product">
+                        <input type="radio" id="classroom2" name="Selection2C" value="SharpWrite Whiteboard Marker" data-price="2.75" required>
+                        <label for="classroom2">
+                            <img src="images/pen.png" alt="SharpWrite Whiteboard Marker">
+                            <div class="product-info">
+                                <strong>SharpWrite Whiteboard Marker</strong><br>
+                                <span class="label">Price:</span> $2.75<br>
+                                <span class="label">Brand:</span> SharpWrite<br>
+                                <span class="label">Color:</span> Blue<br>
+                                <span class="label">Size:</span> Bullet Tip - 2.5mm<br>
+                                <span class="label">Special Feature:</span> Non-toxic, solvent-based, low-odor ink formula<br>
+                                <span class="label">Materials:</span> 70% Recycled Polypropylene, Recycled ABS (Acrylonitrile Butadiene Styrene) Felt Tip and Cap
+                            </div>
+                        </label>
+                        <div class="sustainability">
+                            <span class="sustainability-text">🌱 Seller is under a sustainability pledge for reducing carbon footprint</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Reasoning: Why did you pick this product?</h3>
+            <textarea name="Reason2" rows="4" cols="50" placeholder="Explain your choice..." required></textarea><br>
+
+            <div id="total-price">
+                <h3>Total Price: $<span id="total">0</span></h3>
+            </div>
+
+           <button type="submit">Next</button>
+        </form>
+    </div>
+
+    <script>
+        // Function to calculate the total price
+        function updateTotal() {
+            let total = 0;
+            const selectedItems = document.querySelectorAll('input[type="radio"]:checked');
+            selectedItems.forEach(item => {
+                total += parseFloat(item.getAttribute('data-price'));
+            });
+            document.getElementById('total').innerText = total.toFixed(2);
+        }
+
+        // Listen for changes to update the total price
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', updateTotal);
+        });
+
+         document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', updateTotal);
+        });
+
+        // Handle form submission
+        document.getElementById('scenario2-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from submitting immediately
+
+            // Collect data
+            const furniture2 = document.querySelector('input[name="Selection2F"]:checked').value;
+            const tech2 = document.querySelector('input[name="Selection2T"]:checked').value;
+            const classroom2 = document.querySelector('input[name="Selection2C"]:checked').value;
+            const reasoning2 = document.querySelector('textarea[name="Reason2"]').value;
+
+            // Submit data to Google Sheets
+            const formData = new FormData();
+            formData.append('Selection2F', furniture2);
+            formData.append('Selection2T', tech2);
+            formData.append('Selection2C', classroom2);
+            formData.append('Reason2', reasoning2);
+
+            fetch('https://script.google.com/macros/s/AKfycbxYBJB_PeBA0441mR_lgeQb1f3KBGO832FFhYKiV2w_WXsO_LOynOUpc3aHHYrfytF6/exec', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Redirect to the next page
+                window.location.href = "formApage3.html";
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error submitting the form.');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combined Form</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f1f1f1;
+            color: #232f3e; /* Amazon black */
+        }
+
+        h1, h2, h3 {
+            color: #232f3e;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label, textarea, input[type="text"], input[type="number"], select {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        textarea, input[type="text"], input[type="number"], select {
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .category {
+            margin-bottom: 20px;
+        }
+
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .product {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 150px;
+            text-align: center;
+        }
+
+        .product img {
+            width: 100px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #ff9900; /* Amazon orange */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e68a00;
+        }
+
+        /* Make the page scrollable */
+        html, body {
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Demographic Form -->
+    <div class="container">
+        <h1>Demographic Form</h1>
+        <form id="demographic-form">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" name="first-name" placeholder="Enter your first name" required>
+
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" name="last-name" placeholder="Enter your last name" required>
+
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Non-Binary">Non-Binary</option>
+                <option value="Prefer Not to Say">Prefer Not to Say</option>
+            </select>
+
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" placeholder="Enter your age" required min="1" max="120">
+
+            <label for="profession">Profession</label>
+            <input type="text" id="profession" name="profession" placeholder="Enter your profession" required>
+
+            <button type="submit">Next</button>
+        </form>
+    </div>
+
+    <!-- Scenario 1 -->
+    <div class="container">
+        <h1>Scenario 1: Chemistry Professor</h1>
+        <p>You are a chemistry professor at UC Berkeley with a $100 budget...</p>
+        <form id="scenario1-form">
+            <!-- Furniture -->
+            <div class="category">
+                <h2>Furniture</h2>
+                <div class="products">
+                    <div class="product">
+                        <input type="radio" id="furniture1" name="Selection1F" value="GoodSeat 18 Chair" data-price="700" required>
+                        <label for="furniture1">
+                            <img src="images/chair.jpg" alt="GoodSeat 18 Chair">
+                            <strong>GoodSeat 18" Chair</strong><br>
+                            Price: $700
+                        </label>
+                    </div>
+                    <div class="product">
+                        <input type="radio" id="furniture2" name="Selection1F" value="SchoolEd 18 Chair" data-price="840" required>
+                        <label for="furniture2">
+                            <img src="images/chair.jpg" alt="SchoolEd 18 Chair">
+                            <strong>SchoolEd 18" Chair</strong><br>
+                            Price: $840
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tech -->
+            <div class="category">
+                <h2>Tech</h2>
+                <div class="products">
+                    <div class="product">
+                        <input type="radio" id="tech1" name="Selection1T" value="ABC Laptop" data-price="700" required>
+                        <label for="tech1">
+                            <img src="images/comp.png" alt="ABC Laptop">
+                            <strong>ABC Laptop</strong><br>
+                            Price: $700
+                        </label>
+                    </div>
+                    <div class="product">
+                        <input type="radio" id="tech2" name="Selection1T" value="Bob’s Great Laptop" data-price="840" required>
+                        <label for="tech2">
+                            <img src="images/comp.png" alt="Bob’s Great Laptop">
+                            <strong>Bob’s Great Laptop</strong><br>
+                            Price: $840
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Classroom Supplies -->
+            <div class="category">
+                <h2>Classroom Supplies</h2>
+                <div class="products">
+                    <div class="product">
+                        <input type="radio" id="classroom1" name="Selection1C" value="WriteEase Marker" data-price="1.50" required>
+                        <label for="classroom1">
+                            <img src="images/pen.png" alt="WriteEase Marker">
+                            <strong>WriteEase Marker</strong><br>
+                            Price: $1.50
+                        </label>
+                    </div>
+                    <div class="product">
+                        <input type="radio" id="classroom2" name="Selection1C" value="BoardMate Marker" data-price="2.50" required>
+                        <label for="classroom2">
+                            <img src="images/pen.png" alt="BoardMate Marker">
+                            <strong>BoardMate Marker</strong><br>
+                            Price: $2.50
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <textarea name="Reason1" rows="4" placeholder="Explain your choice..." required></textarea>
+            <h3>Total Price: $<span id="total1">0</span></h3>
+            <button type="submit">Next</button>
+        </form>
+    </div>
+
+    <!-- Repeat similar blocks for Scenario 2 and Scenario 3 -->
+
+    <script>
+        // Total price updater
+        function updateTotal(formId, totalId) {
+            const form = document.getElementById(formId);
+            const totalField = document.getElementById(totalId);
+            let total = 0;
+            const selectedItems = form.querySelectorAll('input[type="radio"]:checked');
+            selectedItems.forEach(item => {
+                total += parseFloat(item.getAttribute('data-price'));
+            });
+            totalField.innerText = total.toFixed(2);
+        }
+
+        document.querySelectorAll('#scenario1-form input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', () => updateTotal('scenario1-form', 'total1'));
+        });
+
+        // Add similar event listeners for Scenario 2 and Scenario 3
+    </script>
+</body>
+</html>
